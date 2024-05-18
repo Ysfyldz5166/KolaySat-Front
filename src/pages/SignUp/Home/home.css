@@ -1,0 +1,35 @@
+.ticket-card {
+  width: 400px;
+  height: 500px;
+}
+
+.ticket-card .card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ticket-card .card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.ticket-card .card-body {
+  padding: 1.5rem;
+}
+
+.ticket-card .card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ticket-card .card-text {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.ticket-card .btn {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}

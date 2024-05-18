@@ -1,0 +1,17 @@
+.navbar-nav .nav-link {
+    font-size: 18px; /* Yazı boyutu */
+    margin-right: 100px; /* Sağ tarafta boşluk bırak */
+  }
+  
+  .navbar-brand {
+    font-size: 24px; /* Marka yazısı boyutu */
+  }
+
+  .navbar-button{
+    padding-top: 50px;
+  }
+  .btn .btn-light:hover{
+    padding-right:50px;
+  }
+
+  

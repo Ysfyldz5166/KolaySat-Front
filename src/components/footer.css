@@ -1,0 +1,26 @@
+.custom-footer {
+    background-color: lightgreen;
+    color: darkblue;
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .custom-footer .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .custom-footer .col-md-4 {
+    flex: 1;
+  }
+  
+  @media (max-width: 768px) {
+    .custom-footer .container {
+      flex-direction: column;
+    }
+  
+    .custom-footer .col-md-4 {
+      flex: none;
+    }
+  }
+  
