@@ -4,32 +4,40 @@
 import { createContext, useState } from "react";
 import { loadLoginState, storeLoginState } from "./storage";
 
-export const LoginContext = createContext()
+export const LoginContext = createContext();
 
+export function LoginationContext({ children }) {
+  const [login, setLogin] = useState(loadLoginState());
 
+  const onLoginSuccess = (data) => {
+    setLogin(data);
+    storeLoginState(data);
+  };
 
-export function LoginationContext({children}){
+  const onLogotSuccess = () => {
+    const defaultState = { id: 0, type: "all" };
+    setLogin(defaultState);
+    storeLoginState(defaultState);
+  };
 
-    const [login, setLogin] = useState(loadLoginState());
+  const setType = (type) => {
+    setLogin((prevState) => {
+      const updatedState = { ...prevState, type };
+      storeLoginState(updatedState);
+      return updatedState;
+    });
+  };
 
-    const onLoginSuccess = (data) => {
-        setLogin(data);
-        storeLoginState(data);
-    }
-
-    const onLogotSuccess = () => {
-        setLogin({id :0});
-        storeLoginState({id : 0});
-    }
-    
-    return (
-    <LoginContext.Provider value={{
+  return (
+    <LoginContext.Provider
+      value={{
         ...login,
         onLoginSuccess,
-        onLogotSuccess
-    }}
+        onLogotSuccess,
+        setType,
+      }}
     >
-        {children}
+      {children}
     </LoginContext.Provider>
-    );
+  );
 }

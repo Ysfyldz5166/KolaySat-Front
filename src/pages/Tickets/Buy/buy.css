@@ -1,0 +1,71 @@
+/* buy.css */
+.container {
+    margin-top: 20px;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    margin-bottom: 10px;
+  }
+  
+  .form-label {
+    margin-bottom: 5px;
+  }
+  
+  .btn-primary {
+    width: 100%;
+  }
+  .payment-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .card-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 15px; /* Kenarları elipsleştir */
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-item p {
+    margin: 0;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+  }
+  .card-body .border {
+    border-radius: 20px; /* Köşeleri elips yap */
+  }
+  .clicked {
+    background-color: lightblue;
+  }
+  
+  .mb-3.border:hover {
+    background-color: lightgray;
+    cursor: pointer;
+  }
+  
+  

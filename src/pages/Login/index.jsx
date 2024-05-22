@@ -71,7 +71,7 @@ export function Login() {
     try {
       const response = await login({ email, password });
       loginState.onLoginSuccess(response.data.user);
-      navigate("/home");
+      navigate("/");
     } catch (axiosError) {
       if (axiosError.response.status === 400) {
         setErrors(axiosError.response.data.validationErrors);

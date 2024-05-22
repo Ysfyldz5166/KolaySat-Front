@@ -3,7 +3,7 @@ export function storeLoginState(loginData){
 }
 
 export function loadLoginState(){ 
-    const defaultState = { id : 0 };
+    const defaultState = { id : 0, type:"all" };
     const loginStateInStorage = localStorage.getItem('loginData')
 
     if(!loginStateInStorage) return defaultState;

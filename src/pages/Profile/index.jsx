@@ -1,50 +1,99 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getUser } from "./profileApi";
+import axios from "axios";
+import { loadLoginState } from "../state/storage";
+import './Profile.css'; // Profil sayfası için özel stiller
 
 
 
 export function Profile() {
-    const { id } = useParams(); // React Router'dan id parametresini al
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-  
-    useEffect(() => {
-      const fetchUser = async () => {
-        try {
-          setLoading(true);
-          const response = await getUser(id); // API'den kullanıcı verilerini al
-          setUser(response.data); // Kullanıcı verilerini state'e kaydet
-          setLoading(false);
-        } catch (error) {
-          setError(error); // Hata durumunda hatayı state'e kaydet
-          setLoading(false);
-        }
-      };
-  
-      fetchUser();
-    }, [id]); // id değiştiğinde tekrar çağrılacak
-  
-    if (loading) {
-      return <div>Loading...</div>;
+  const [userData, setUserData] = useState({
+    userName: "",
+    email: "",
+  });
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userId = loadLoginState()?.id;
+        const response = await axios.get(`/api/v1/users/${userId}`);
+
+        setUserData(response.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+    if (currentPassword && newPassword) {
+      try {
+        const userId = loadLoginState()?.id;
+        const response = await axios.put(`/api/v1/users/${userId}`, {
+          ...userData,
+          password: newPassword,
+        });
+        setMessage("Password updated successfully");
+        setCurrentPassword("");
+        setNewPassword("");
+      } catch (error) {
+        setMessage("Error updating password");
+      }
+    } else {
+      setMessage("Please provide current and new passwords");
     }
-  
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    }
-  
-    return (
-      <div>
-        {user && (
-          <div>
-            <h2>User Profile</h2>
-            <p><strong>Name:</strong> {user.name}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            {/* Diğer kullanıcı bilgilerini buraya ekleyebilirsiniz */}
-          </div>
-        )}
+  };
+
+  return (
+    <div className="container mt-4 profile-container">
+      <div className="user-info mb-4 p-4 shadow rounded bg-light">
+        <h3>Kullanıcı Bilgileri</h3>
+        <ul className="list-unstyled">
+          <li><strong>Kullanıcı Adı:</strong> {userData.username}</li>
+          <li><strong>Email:</strong> {userData.email}</li>
+        </ul>
       </div>
-    );
-  }
-  
+      <div className="password-reset p-4 shadow rounded bg-light">
+        <h3>Şifre Yenileme</h3>
+        <form onSubmit={handlePasswordChange}>
+          <div className="mb-3">
+            <label htmlFor="currentPassword" className="form-label">
+              Mevcut Şifre
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="currentPassword"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="newPassword" className="form-label">
+              Yeni Şifre
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="newPassword"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Şifreyi Güncelle
+          </button>
+        </form>
+        {message && <div className="alert alert-info mt-3">{message}</div>}
+      </div>
+    </div>
+  );
+}

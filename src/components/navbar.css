@@ -1,17 +1,19 @@
-.navbar-nav .nav-link {
-    font-size: 18px; /* Yazı boyutu */
-    margin-right: 100px; /* Sağ tarafta boşluk bırak */
-  }
-  
-  .navbar-brand {
-    font-size: 24px; /* Marka yazısı boyutu */
-  }
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Öğeleri dikey olarak ortala */
+}
 
-  .navbar-button{
-    padding-top: 50px;
-  }
-  .btn .btn-light:hover{
-    padding-right:50px;
-  }
+.navbar-nav .nav-link {
+  font-size: 18px; /* Yazı boyutu */
+}
+
+.navbar-button {
+  color: rgb(0, 0, 0); /* Buton metin rengi */
+  margin-left: 10px; /* Butonlar arasında boşluk bırak */
+  margin-right: 10px; /* Butonlar arasında boşluk bırak */
+  flex-shrink: 0; /* Boyutun değişmemesini sağla */
+}
+  
 
   

@@ -16,7 +16,7 @@ export function NavbarProfil() {
     <>
       <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "lightgreen" }}>
         <div className="container-fluid">
-          <Link className="navbar-brand ml-auto" to="/home">
+          <Link className="navbar-brand ml-auto" to="/">
             Kolay Sat
           </Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,7 +27,7 @@ export function NavbarProfil() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="row w-100">
               <div className="col-md-2 text-center">
-                <Link className="nav-link" to="/home">
+                <Link className="nav-link" to="/">
                   <FaHome />
                   <div>Home</div>
                 </Link>
@@ -57,9 +57,13 @@ export function NavbarProfil() {
                 </Link>
               </div>
               <div className="col-md-2 text-center">
-                <button className="btn btn-light" onClick={onClickLogout}>
-                  <FaSignOutAlt />
-                  <div>Çıkış Yap</div>
+              <button className="btn btn-light navbar-button">
+                  <Link to="/" onClick={onClickLogout} className="nav-link">
+                    <div>
+                      <FaSignOutAlt />
+                    </div>
+                    <div>Çıkış Yap</div>
+                  </Link>
                 </button>
               </div>
             </div>
