@@ -9,6 +9,8 @@ import { Login } from "../pages/Login";
 import { Tickets} from "../pages/Tickets"
 import {Profile} from "../pages/Profile"
 import { Buy } from "../pages/Tickets/Buy";
+import { AddTicket } from "../pages/Profile/AddTicket";
+import { BuyTicket } from "../pages/Profile/BuyTicket";
 
 
 export default createBrowserRouter([
@@ -36,7 +38,7 @@ export default createBrowserRouter([
             Component:Tickets
         },
         {
-            path:"/ticket/:id",
+            path:"/tickets/:id",
             Component:Buy
         },
 
@@ -44,6 +46,15 @@ export default createBrowserRouter([
             path: "/profile/:id",
             Component: Profile
         },
+        {
+            path: "/profile/addedTicket",
+            Component: AddTicket
+        },
+        {
+            path: "/profile/buyedTicket",
+            Component: BuyTicket
+        },
+
 
     ]
     }

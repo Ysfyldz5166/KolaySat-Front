@@ -14,6 +14,7 @@ export function Home() {
     try {
       const response = await axios.get('/api/v1/tickets');
       setTickets(response.data);
+      
     } catch (error) {
       console.error('Error fetching tickets:', error);
     }
@@ -55,7 +56,7 @@ export function Home() {
   };
 
   const handleBuyTicket = (ticketId) => {
-    navigate(`/ticket/${ticketId}`); 
+    navigate(`/tickets/${ticketId}`); 
   };
 
   return (

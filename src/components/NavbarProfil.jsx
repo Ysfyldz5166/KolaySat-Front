@@ -39,13 +39,13 @@ export function NavbarProfil() {
                 </Link>
               </div>
               <div className="col-md-2 text-center">
-                <Link to="#" className="nav-link">
+                <Link to="/profile/addedTicket" className="nav-link">
                   <FaTicketAlt />
-                  <div>Satılan Biletler</div>
+                  <div>Eklenen Biletler</div>
                 </Link>
               </div>
               <div className="col-md-2 text-center">
-                <Link to="#" className="nav-link">
+                <Link to="/profile/buyedTicket" className="nav-link">
                   <FaTicketAlt />
                   <div>Aldığım Biletler</div>
                 </Link>
