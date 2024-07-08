@@ -2,8 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./home.css"
-import {useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
   const [tickets, setTickets] = useState([]);
@@ -14,7 +13,6 @@ export function Home() {
     try {
       const response = await axios.get('/api/v1/tickets');
       setTickets(response.data);
-      
     } catch (error) {
       console.error('Error fetching tickets:', error);
     }
@@ -73,6 +71,7 @@ export function Home() {
                 <p className="card-text">Tipi: {ticket.type}</p>
                 <p className="card-text">Fiyat: {ticket.price}</p>
                 <p className="card-text">Tarih: {ticket.ticketDate}</p>
+                <p className="card-text">Adres: {ticket.adress}</p> {/* Adres bilgisi eklendi */}
                 <button
                   className="btn btn-success"
                   onClick={() => handleBuyTicket(ticket.id)}

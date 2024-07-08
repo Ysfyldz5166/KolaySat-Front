@@ -1,10 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import axios from "axios";
 import { loadLoginState } from "../state/storage";
-
-// import { Input } from '../SignUp/components/Input';
 
 export function Tickets() {
   const [newImage, setNewImage] = useState();
@@ -13,7 +9,8 @@ export function Tickets() {
     description: "",
     type: "",
     price: "",
-    ticketDate: "", // Yeni eklenen ticketDate özelliği
+    ticketDate: "",
+    address: "", // Yeni eklenen adres alanı
     userId: loadLoginState()?.id,
   });
   const [successMessage, setSuccessMessage] = useState("");
@@ -60,8 +57,10 @@ export function Tickets() {
       errors.price = "Bilet fiyatı belirtilmelidir.";
     }
     if (!formData.ticketDate) {
-      // ticketDate boş olamaz kontrolü
       errors.ticketDate = "Bilet tarihi belirtilmelidir.";
+    }
+    if (!formData.address.trim()) {
+      errors.address = "Adres boş bırakılamaz.";
     }
     if (!formData.userId) {
       errors.userId = "User ID belirtilmelidir.";
@@ -92,8 +91,11 @@ export function Tickets() {
         price: formData.price,
         userId: formData.userId,
         image: newImage,
-        ticketDate: formData.ticketDate, // ticketDate verisini formData'ya ekledik
+        ticketDate: formData.ticketDate,
+        adress: formData.address, // Adres verisi backend'e gönderiliyor
       };
+
+      console.log("Gönderilen veri:", formDataWithImage); // Gönderilen veriyi konsola yazdır
 
       const response = await axios.post("/api/v1/tickets", formDataWithImage, {
         headers: {
@@ -190,6 +192,17 @@ export function Tickets() {
                 id="ticketDate"
                 name="ticketDate"
                 value={formData.ticketDate}
+                onChange={handleChange}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="address">Adres:</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={formData.address}
                 onChange={handleChange}
                 className="form-control"
               />
