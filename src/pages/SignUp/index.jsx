@@ -1,51 +1,44 @@
 import { useEffect, useState } from "react";
 import { signUp } from "./api";
-import { Input } from "./components/Input";
 import { useNavigate } from "react-router-dom";
 
 export function SignUp() {
-  const [userName, setUserName] = useState();
-  const [email, setemail] = useState();
-  const [password, setPassword] = useState();
-  const [passwordRepeat, setPasswordRepeat] = useState();
-  const [apiProgress, SetApiProgress] = useState(false);
-  const [succesMessage, setSuccesMessage] = useState();
+  const [userName, setUserName] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState("");
+  const [apiProgress, setApiProgress] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const [errors, setErrors] = useState({});
-  const [generalError, setGeneralError] = useState();
+  const [generalError, setGeneralError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    setErrors(function (lastError) {
-      return {
-        ...lastError,
-        username: undefined,
-      };
-    });
+    setErrors((lastError) => ({
+      ...lastError,
+      username: undefined,
+    }));
   }, [userName]);
 
   useEffect(() => {
-    setErrors(function (lastError) {
-      return {
-        ...lastError,
-        email: undefined,
-      };
-    });
+    setErrors((lastError) => ({
+      ...lastError,
+      email: undefined,
+    }));
   }, [email]);
 
   useEffect(() => {
-    setErrors(function (lastError) {
-      return {
-        ...lastError,
-        password: undefined,
-      };
-    });
+    setErrors((lastError) => ({
+      ...lastError,
+      password: undefined,
+    }));
   }, [password]);
+
   const onSubmit = async (event) => {
     event.preventDefault();
-    setSuccesMessage();
-    setGeneralError();
-    SetApiProgress(true);
-    event.preventDefault();
+    setSuccessMessage("");
+    setGeneralError("");
+    setApiProgress(true);
 
     try {
       const response = await signUp({
@@ -53,71 +46,90 @@ export function SignUp() {
         email,
         password,
       });
-      setSuccesMessage(response.data.message);
-      navigate("/login")
+      setSuccessMessage(response.data.message);
+      navigate("/login");
     } catch (axiosError) {
       if (
         axiosError.response?.data &&
         axiosError.response.data.status === 400
       ) {
-        console.log("hata", axiosError.response);
         setErrors(axiosError.response.data.validationErrors);
       } else {
-        setGeneralError("Unexcepted error occured. Please try again");
+        setGeneralError("Unexpected error occurred. Please try again.");
       }
     } finally {
-      SetApiProgress(false);
+      setApiProgress(false);
     }
   };
 
   return (
-    <div className="container">
-      <div className="col-lg-4 offset-lg-3 col-sm-8 offset-sm-2">
-        <form onSubmit={onSubmit}>
-          <div className="text-center card-header">
-            <h1>Kayıt Ol</h1>
-          </div>
-          <div className="card-body">
-            <Input
-              id="username"
-              label="Kullanıcı Adı"
-              error={errors.userName}
-              onChange={(event) => setUserName(event.target.value)}
-            />
-            <Input
-              id="email"
-              label="E-mail"
-              error={errors.email}
-              onChange={(event) => setemail(event.target.value.toLowerCase())} // E-posta adresini küçük harfe dönüştürüyoruz
-            />
-
-            <Input
-              id="password"
-              label="Şifre"
-              error={errors.password}
-              onChange={(event) => setPassword(event.target.value)}
-              type="password"
-            />
+    <div className="sign-up-container">
+      <div className="card">
+        <div className="card-header">
+          <h1>Kayıt Ol</h1>
+        </div>
+        <div className="card-body">
+          <form onSubmit={onSubmit}>
             <div className="mb-3">
-              <label htmlFor="passwordRepeat" className="form-label">
-                Password Repeat
+              <label htmlFor="username" className="form-label">
+                Kullanıcı Adı
               </label>
               <input
+                id="username"
                 className="form-control"
+                onChange={(event) => setUserName(event.target.value)}
+              />
+              {errors.userName && (
+                <div className="alert alert-danger">{errors.userName}</div>
+              )}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                E-mail
+              </label>
+              <input
+                id="email"
+                className="form-control"
+                onChange={(event) => setemail(event.target.value.toLowerCase())}
+              />
+              {errors.email && (
+                <div className="alert alert-danger">{errors.email}</div>
+              )}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Şifre
+              </label>
+              <input
+                id="password"
+                type="password"
+                className="form-control"
+                onChange={(event) => setPassword(event.target.value)}
+              />
+              {errors.password && (
+                <div className="alert alert-danger">{errors.password}</div>
+              )}
+            </div>
+            <div className="mb-3">
+              <label htmlFor="passwordRepeat" className="form-label">
+                Şifre Tekrarı
+              </label>
+              <input
                 id="passwordRepeat"
                 type="password"
+                className="form-control"
                 onChange={(event) => setPasswordRepeat(event.target.value)}
               />
             </div>
-            {succesMessage && (
-              <div className="alert alert-success">{succesMessage}</div>
+            {successMessage && (
+              <div className="alert alert-success">{successMessage}</div>
             )}
             {generalError && (
               <div className="alert alert-danger">{generalError}</div>
             )}
             <div className="text-center">
               <button
-                className="btn btn-outline-success"
+                className="btn"
                 disabled={
                   apiProgress || !password || password !== passwordRepeat
                 }
@@ -131,8 +143,8 @@ export function SignUp() {
                 Kayıt Ol
               </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -1,26 +1,72 @@
 .custom-footer {
-    background-color: lightgreen;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    padding: 50px 0;
-  }
-  
+  background: linear-gradient(to right, #b4ec51, #429321); /* Açık yeşil tonlarda geçiş */
+  color: white;
+  text-align: center;
+  padding: 50px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+.custom-footer .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.custom-footer .col-md-4 {
+  flex: 1;
+  padding: 20px;
+  margin: 10px;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+  border-radius: 10px;
+}
+
+.custom-footer .col-md-4:hover {
+  transform: translateY(-10px);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.custom-footer h5 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #ffeb3b; /* Sarı ton */
+  transition: color 0.3s ease;
+}
+
+.custom-footer h5:hover {
+  color: white; /* Beyaz ton */
+}
+
+.custom-footer p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  transition: color 0.3s ease;
+}
+
+.custom-footer p:hover {
+  color: #ffeb3b; /* Sarı ton */
+}
+
+.custom-footer .maps iframe {
+  border: 2px solid #ffeb3b;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.custom-footer .maps iframe:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
   .custom-footer .container {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .custom-footer .col-md-4 {
-    flex: 1;
+    flex: none;
+    width: 100%;
+    max-width: 90%;
   }
-  
-  @media (max-width: 768px) {
-    .custom-footer .container {
-      flex-direction: column;
-    }
-  
-    .custom-footer .col-md-4 {
-      flex: none;
-    }
-  }
-  
+}

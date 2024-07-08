@@ -1,19 +1,75 @@
+.navbar {
+  background: linear-gradient(to right, #a8e063, #56ab2f); /* Açık yeşil tonlarda geçiş */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: white !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
 .navbar-nav {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Öğeleri dikey olarak ortala */
+  align-items: center;
+  width: 100%;
 }
 
-.navbar-nav .nav-link {
-  font-size: 18px; /* Yazı boyutu */
+.nav-link {
+  color: white !important;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffeb3b !important; /* Sarı ton */
+  transform: translateY(-2px);
 }
 
 .navbar-button {
-  color: rgb(0, 0, 0); /* Buton metin rengi */
-  margin-left: 10px; /* Butonlar arasında boşluk bırak */
-  margin-right: 10px; /* Butonlar arasında boşluk bırak */
-  flex-shrink: 0; /* Boyutun değişmemesini sağla */
+  background-color: #a8e063; /* Açık yeşil ton */
+  border: none;
+  color: black !important;
+  margin: 0 5px; /* Daha küçük boşluk */
+  padding: 5px 10px; /* Daha küçük boyut */
+  border-radius: 5px;
+  font-size: 14px; /* Daha küçük yazı boyutu */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-  
 
-  
+.navbar-button:hover {
+  background-color: #7cc445; /* Biraz daha koyu açık yeşil ton */
+  transform: translateY(-2px);
+}
+
+.navbar-brand:hover {
+  color: #ffeb3b !important; /* Sarı ton */
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-button {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+  }
+}

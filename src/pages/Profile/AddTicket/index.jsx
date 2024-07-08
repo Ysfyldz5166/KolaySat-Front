@@ -67,7 +67,7 @@ export function AddTicket() {
         id: editingTicket.id,
         name: editingTicket.name,
         description: editingTicket.description,
-        type: editingTicket.type,
+        type: editingTicket.type.charAt(0).toUpperCase() + editingTicket.type.slice(1).toLowerCase(),
         price: editingTicket.price,
         ticketDate: editingTicket.ticketDate,
       };

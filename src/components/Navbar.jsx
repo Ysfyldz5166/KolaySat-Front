@@ -14,7 +14,7 @@ import {
   FaEllipsisH,
 } from "react-icons/fa";
 
-import "./navbar.css"
+import "./navbar.css";
 
 export function Navbar() {
   const { id, onLogotSuccess } = useContext(LoginContext);
@@ -25,8 +25,7 @@ export function Navbar() {
     loginData.type = newType;
     localStorage.setItem("loginData", JSON.stringify(loginData));
     navigate("/");
-    navigate(0);// Sayfayı yeniden yükle
-
+    navigate(0); // Sayfayı yeniden yükle
   };
 
   const onClickLogout = () => {
@@ -35,17 +34,13 @@ export function Navbar() {
 
   return (
     <>
-      <nav
-        className="navbar navbar-expand-lg navbar-light"
-        style={{ backgroundColor: "lightgreen" }}
-      >
-        <Link className="navbar-brand" to="/"onClick={() => handleLinkClick("all")}>
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <Link className="navbar-brand" to="/" onClick={() => handleLinkClick("all")}>
           Kolay Sat
         </Link>
         <button
           className="navbar-toggler"
           type="button"
-          
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
@@ -57,50 +52,31 @@ export function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <div className="navbar-nav w-100">
-            <Link
-              className="nav-link"
-              onClick={() => handleLinkClick("Yemek")}
-            >
+            <Link className="nav-link" onClick={() => handleLinkClick("Yemek")}>
               <div>
                 <FaUtensils />
               </div>
               <div>Yemek</div>
             </Link>
-            <Link
-              
-              className="nav-link"
-              onClick={() => handleLinkClick("Stand-Up")}
-            >
+            <Link className="nav-link" onClick={() => handleLinkClick("Stand-Up")}>
               <div>
                 <FaMicrophone />
               </div>
               <div>Stand-up</div>
             </Link>
-            <Link
-              to="/"
-              className="nav-link"
-              onClick={() => handleLinkClick("Konser")}
-            >
+            <Link to="/" className="nav-link" onClick={() => handleLinkClick("Konser")}>
               <div>
                 <FaMusic />
               </div>
               <div>Konser</div>
             </Link>
-            <Link
-              to="/"
-              className="nav-link"
-              onClick={() => handleLinkClick("Tiyatro")}
-            >
+            <Link to="/" className="nav-link" onClick={() => handleLinkClick("Tiyatro")}>
               <div>
                 <FaTheaterMasks />
               </div>
               <div>Tiyatro</div>
             </Link>
-            <Link
-              to="/"
-              className="nav-link"
-              onClick={() => handleLinkClick("Diğer")}
-            >
+            <Link to="/" className="nav-link" onClick={() => handleLinkClick("Diğer")}>
               <div>
                 <FaEllipsisH />
               </div>
@@ -114,22 +90,16 @@ export function Navbar() {
             </Link>
             {id === 0 ? (
               <>
-                <button className="btn btn-light mr-2">
-                  <Link
-                    to="/signup"
-                    className="navbar-button"
-                  >
+                <button className="btn navbar-button">
+                  <Link to="/signup" className="navbar-button">
                     <div>
                       <FaUserPlus />
                     </div>
                     <div>Kayıt Ol</div>
                   </Link>
                 </button>
-                <button className="btn btn-light navbar-button">
-                  <Link
-                    to="/login"
-                    className="navbar-button"
-                  >
+                <button className="btn navbar-button">
+                  <Link to="/login" className="navbar-button">
                     <div>
                       <FaSignInAlt />
                     </div>
@@ -139,18 +109,15 @@ export function Navbar() {
               </>
             ) : (
               <>
-                <button className="btn btn-light navbar-button">
-                  <Link
-                    to={`/profile/${id}`}
-                    className="nav-link"
-                  >
+                <button className="btn navbar-button">
+                  <Link to={`/profile/${id}`} className="nav-link">
                     <div>
                       <FaUser />
                     </div>
                     <div>Profil</div>
                   </Link>
                 </button>
-                <button className="btn btn-light navbar-button">
+                <button className="btn navbar-button">
                   <Link to="/" onClick={onClickLogout} className="nav-link">
                     <div>
                       <FaSignOutAlt />

@@ -4,8 +4,6 @@ import axios from "axios";
 import { loadLoginState } from "../state/storage";
 import './Profile.css'; // Profil sayfası için özel stiller
 
-
-
 export function Profile() {
   const [userData, setUserData] = useState({
     userName: "",
@@ -55,7 +53,7 @@ export function Profile() {
       <div className="user-info mb-4 p-4 shadow rounded bg-light">
         <h3>Kullanıcı Bilgileri</h3>
         <ul className="list-unstyled">
-          <li><strong>Kullanıcı Adı:</strong> {userData.username}</li>
+          <li><strong>Kullanıcı Adı:</strong> {userData.userName}</li>
           <li><strong>Email:</strong> {userData.email}</li>
         </ul>
       </div>

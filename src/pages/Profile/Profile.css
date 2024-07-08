@@ -1,32 +1,73 @@
+/* Profile page specific styles */
 .profile-container {
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  .user-info h3, .password-reset h3 {
-    font-size: 1.5rem;
-    color: #343a40;
-  }
-  
-  .user-info ul li, .password-reset .form-label {
-    font-size: 1rem;
-    color: #495057;
-  }
-  
-  .user-info {
-    background: #ffffff;
-  }
-  
-  .password-reset {
-    background: #ffffff;
-  }
-  
-  .password-reset .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .password-reset .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-  }
+  max-width: 600px;
+  margin: auto;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.user-info, .password-reset {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.user-info h3, .password-reset h3 {
+  color: #4caf50;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #4caf50;
+  padding-bottom: 10px;
+}
+
+.user-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.user-info ul li {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.user-info ul li strong {
+  color: #333;
+}
+
+.password-reset label {
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.password-reset .form-control {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s;
+}
+
+.password-reset .form-control:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: #4caf50;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #45a049;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 10px;
+}
